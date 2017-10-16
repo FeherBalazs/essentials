@@ -1,6 +1,6 @@
 import numpy as np
 
-# What mathematical ideas you need to know to program neural networks?
+# What maths you need to know to implement neural networks?
 # First you need to know some linear algebra.
 # Why is it important for neural networks? 
 # Let's take the following problem.
@@ -61,14 +61,26 @@ w = np.array([
  [3,4],
  [5,6]
 ])
+print(x.shape, w.shape)
 n1_n2 = np.dot(x, w)
 print(n1_n2)
 
-# Before training neural nets we set up weight matrices randomly. Let's wtite a function to initialize a weight matrix for the above example? 
+# Before training neural nets we set up weight matrices randomly. Let's wtite a function to initialize a weight matrix for the above example: 
 
 def weight_init(input, output):
 	return np.random.random((input, output))
 
 print weight_init(3,2)
+
+# We want our neurons to compute some functions on the input. As universality can only be reached with digital systems, and because the the brain is a digital computer we will implement a digital unit, that outputs either 1 or 0.
+
+def diu(input, weight):
+	'''Vectorized digital unit implementation.'''
+	a = np.dot(input, weight)
+	a[a<0.5] = 0
+	a[a>=0.5] = 1
+	return a
+
+print ('Diu: {}'.format(diu(x, w)))
 
 # print('''\n-------------------\nSection 2\n-------------------\n''')
